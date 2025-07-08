@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 from bitcoinrpc.authproxy import AuthServiceProxy
-from heuristics import score_total
 
 # Load environment variables from .env
 load_dotenv()
@@ -25,17 +24,3 @@ def get_tx_inputs(txid):
 def get_tx_outputs(txid):
     tx = get_tx(txid)
     return tx['vout']
-
-# def analyze(txid):
-#     print(f"Analyzing transaction: {txid}")
-#     tx = get_tx(txid)
-#     inputs = get_tx_inputs(txid)
-#     outputs = get_tx_outputs(txid)
-#     score = score_total(inputs, outputs)
-#     print(f"Heuristic Score: {score}/6")
-#     if score >= 5:
-#         print("🟢 Likely CoinJoin or Mixer")
-#     elif score >= 3:
-#         print("🟡 Possibly a Mixer")
-#     else:
-#         print("🔴 Unlikely to be a Mixer")
